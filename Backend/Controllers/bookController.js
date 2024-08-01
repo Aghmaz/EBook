@@ -22,6 +22,9 @@ exports.createBook = async (req, res) => {
   try {
     const bookData = { ...req.body, userId: req.user.id };
     const book = await bookService.createBook(bookData);
+    if (book.error) {
+      return res.status(400).json({ error: book.error });
+    }
     res.status(201).json(book);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -46,10 +49,11 @@ exports.deleteBook = async (req, res) => {
   try {
     const { id } = req.params;
     const deletedBook = await bookService.deleteBook(id, req.user.id);
-    if (!deletedBook)
+    if (!deletedBook) {
       return res
         .status(404)
         .json({ error: "Book not found or not owned by user" });
+    }
     res.json({ message: "Book deleted" });
   } catch (err) {
     res.status(500).json({ error: err.message });

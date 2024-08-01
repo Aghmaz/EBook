@@ -1,4 +1,4 @@
 module.exports = {
   jwtSecret: "ebookjwtToken12345678",
-  mongoURI: "mongodb://localhost:27017/book-management",
+  MONGODB_URI: "mongodb://0.0.0.0:27017/ebookdatabase",
 };

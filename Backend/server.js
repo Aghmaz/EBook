@@ -18,12 +18,14 @@ app.use(
   })
 );
 mongoose
-  .connect("mongodb://0.0.0.0:27017/ebookdatabase")
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log("connected to mongodb"))
   .catch((error) => console.log("couldn't connected to mongodb"));
 
 app.use("/api/auth", authRoute);
 app.use("/api/books", bookRoutes);
 
-const PORT = process.env.PORT || 5000;
+let PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+module.exports = app;

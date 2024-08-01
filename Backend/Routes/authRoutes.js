@@ -13,7 +13,6 @@ router.post("/signup", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { error } = loginSchema.validate(req.body);
   if (error) return res.status(400).json({ error: error.details });
-
   await loginUser(req, res);
 });
 
