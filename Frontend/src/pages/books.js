@@ -9,7 +9,9 @@ import { fetchAllBookAsync } from "../store/books/bookSlice";
 import BookCategory from "../components/Books/book-category";
 export default function Books() {
   const [detailRecord, setDetailRecord] = useState(null);
-  const getAllBooks = useSelector((state) => state.book.books || []);
+  const getAllBooks = useSelector((state) =>
+    state.book ? state.book.books : []
+  );
   console.log(getAllBooks);
   const dispatch = useDispatch();
   useEffect(() => {

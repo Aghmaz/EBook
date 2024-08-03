@@ -199,22 +199,28 @@ function BookCategory({ data, setDetailRecord }) {
             ))}
           </Row>
         ) : (
-          <div className="lg:py-20 py-10 px-8 flex flex-col justify-center items-center">
-            <Text className="text-[#2C2C2E] md:text-2xl text-xl font-normal mt-2 mb-2">
-              No Data Match
-            </Text>
-          </div>
+          <>
+            {originalData.length > 0 && (
+              <div className="lg:py-20 py-10 px-8 flex flex-col justify-center items-center">
+                <Text className="text-[#2C2C2E] md:text-2xl text-xl font-normal mt-2 mb-2">
+                  No Data Match
+                </Text>
+              </div>
+            )}
+          </>
         )}
       </div>
-      <Pagination
-        className="pagination-custom mt-5 mb-2 "
-        current={currentPage}
-        pageSize={pageSize}
-        total={filteredData.length}
-        onChange={handlePageChange}
-        showSizeChanger
-        pageSizeOptions={["6", "12", "18", "24", "30"]}
-      />
+      {filteredData.length > 0 && (
+        <Pagination
+          className="pagination-custom mt-5 mb-2 "
+          current={currentPage}
+          pageSize={pageSize}
+          total={filteredData.length}
+          onChange={handlePageChange}
+          showSizeChanger
+          pageSizeOptions={["6", "12", "18", "24", "30"]}
+        />
+      )}
     </Layout>
   );
 }

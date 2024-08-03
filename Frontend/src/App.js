@@ -1,26 +1,34 @@
 // Importing necessary modules
 import "./main.css";
-import React, { useEffect } from "react";
+import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import "react-toastify/dist/ReactToastify.css";
 import routes from "./router";
 import { ConfigProvider } from "antd";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { Provider } from "react-redux";
+import axios from "axios";
+import * as _redux from "./redux";
 import { persistor, store } from "./store/store";
 import { ToggleProvider } from "./context/provider";
 import { PersistGate } from "redux-persist/integration/react";
 import ProtectedRoute from "./ProtectedRoute";
 import { ToastContainer } from "react-toastify";
-import { getUserId } from "./constants";
-import Page404 from "./pages/no-data-found";
-import { SideBar } from "./components/SideBar";
+
+/**
+ * Creates `axios-mock-adapter` instance for provided `axios` instance, add
+ * basic Metronic mocks and returns it.
+ *
+ * @see https://github.com/ctimmerm/axios-mock-adapter
+ */
+/* const mock = */ _redux.mockAxios(axios);
+
+/**
+ * Inject metronic interceptors for axios.
+ *
+ * @see https://github.com/axios/axios#interceptors
+ */
 
 const queryClient = new QueryClient({
   defaultOptions: {

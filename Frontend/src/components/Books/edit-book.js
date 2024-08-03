@@ -11,7 +11,7 @@ import {
   Select,
 } from "antd";
 import { Svgs } from "../Svgs/svg-icons";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import {
   fetchAllBookAsync,
